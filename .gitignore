@@ -3,3 +3,7 @@
 ################################################################################
 
 /AutoUpdater/obj
+/UpdaterEx/obj
+/.vs
+/AutoUpdater/bin/Release
+/UpdaterEx/bin/Release
