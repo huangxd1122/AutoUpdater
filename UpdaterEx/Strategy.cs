@@ -8,7 +8,7 @@ namespace UpdaterEx
 {
     public class Strategy
     {
-        public void Execute()
+        public void Execute(string s,string k)
         {
             //todo 扩展升级
         }

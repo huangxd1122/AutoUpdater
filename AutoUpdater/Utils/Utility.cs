@@ -30,7 +30,7 @@ namespace AutoUpdater.Utils
             }
         }
 
-        internal static void DirectoryCopy(string sourceDirName, string destDirName, 
+        internal static void DirectoryCopy(string sourceDirName, string destDirName,
             bool copySubDirs, bool isOverWrite, Action<string> action)
         {
             var dir = new DirectoryInfo(sourceDirName);
@@ -69,7 +69,7 @@ namespace AutoUpdater.Utils
 
         internal static string GetTempDirectory()
         {
-            var tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var tempDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\UpdateFile", Path.GetRandomFileName());
             Directory.CreateDirectory(tempDir);
             return tempDir;
         }

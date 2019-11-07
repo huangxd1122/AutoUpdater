@@ -16,12 +16,13 @@ namespace AutoUpdater
         [STAThread]
         static void Main(string[] args)
         {
-            //0.9.0.0 1.0.0.0 https://github.com/WELL-E http://localhost:9090/UpdateFile.zip E:\PlatformPath 2b406701f8ad92922feb537fc789561a
-            //args = new string[] { "1.0.0.3","1.0.0.4","https://github.com/WELL-E","http://192.168.0.46:8080/UpdateFile/testfile.zip",
-            //    AppDomain.CurrentDomain.BaseDirectory,"59401e942d3ca1a9098b09f69afe5682"};
+            //1.0.0.12 1.0.0.13 http://net.4006337366.com/UpdateFiles/1.0.0.13.zip D:\Program Files\HXD\SampleCabinetManage
+            //args = new string[] { "1.0.0.13","1.0.0.14","1","http://net.4006337366.com/UpdateFiles/1.0.0.14.zip",
+            //    @"D:\Program Files\HXD\SampleCabinetManage",""};
             if (args.Length != 6) return;
             if (SingleInstance<App>.InitializeAsFirstInstance(AppId))
             {
+                System.Threading.Thread.Sleep(1000*2);
                 var win = new MainWindow();
                 var vm = new MainWindowViewModel(args, win.Close);
                 win.DataContext = vm;

@@ -156,7 +156,7 @@ namespace AutoUpdater.ViewModels
             UpdateInfo.NewVersion = args[1];
             UpdateInfo.UpdateLogUrl = args[2];
             UpdateInfo.UpdateFileUrl = args[3];
-            UpdateInfo.UnpackPath = args[4].Replace("|", " ");
+            UpdateInfo.UnpackPath = AppDomain.CurrentDomain.BaseDirectory;
             UpdateInfo.FileMd5 = args[5];
 
             //开始下载
@@ -222,15 +222,18 @@ namespace AutoUpdater.ViewModels
             File.Delete(filePath);
             Update32Or64Libs(UpdateInfo.TempPath);
             ProgressValue = +ProgressValue + 5;
-
+            Thread.Sleep(1000 * 3);
             //更新
             StatusDescription = " 正在更新...";
+            StatusDescription = UpdateInfo.UnpackPath;
             IsCopying = true;
             Utility.DirectoryCopy(UpdateInfo.TempPath, UpdateInfo.UnpackPath,
                 true, true, o => InstallFileName = o);
+            Thread.Sleep(1000 * 3);
+            ExecuteStrategy();
+            StatusDescription = " 正在写入版本信息...";
             //更新版本号码
             Utility.UpdateReg(Registry.LocalMachine, SubKey, "Version", UpdateInfo.NewVersion.ToLower().Replace("v", ""));
-            //ExecuteStrategy();
             UpdateVersionFile(UpdateInfo.NewVersion);
             IsCopying = false;
             ProgressValue = +ProgressValue + 5;
